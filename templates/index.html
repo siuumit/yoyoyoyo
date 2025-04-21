@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Sentiment Analysis</h1>
+        <form method="POST" action="{{ url_for('analyze_sentiment') }}">
+            <textarea class="form-control" name="comment" rows="3" required>{{ comment }}</textarea>
+            <button type="submit" class="btn btn-primary mt-2">Analyze</button>
+        </form>
+        {% if sentiment is defined %}
+        <div class="mt-4 alert {{ 'alert-success' if sentiment == 1 else 'alert-danger' }}">
+            {% if sentiment == 1 %} Positive comment! {% else %} Negative comment! {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
